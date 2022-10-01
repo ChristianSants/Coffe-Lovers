@@ -15,6 +15,7 @@ import javax.ws.rs.core.MediaType;
 import dev.ifrs.Model.User;
 
 @Path("/user")
+@Transactional
 public class UserWS {
     @POST
     @Transactional
@@ -34,7 +35,6 @@ public class UserWS {
     @GET
     @Path("/list")
     @Produces(MediaType.APPLICATION_JSON)
-    @Transactional
     public List<User> list() {
         // 3 - O método `listAll` recupera todos os objetos da classe User.
         return User.listAll();
@@ -43,7 +43,6 @@ public class UserWS {
     @GET
     @Path("/list/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    @Transactional
     public User list(@PathParam("id") Long id) {
         // 4 - O método do Panache `findById` recupera um objeto da classe User.
         return User.findById(id);
