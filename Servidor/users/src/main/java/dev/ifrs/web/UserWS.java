@@ -1,4 +1,4 @@
-package dev.ifrs;
+package dev.ifrs.web;
 
 import java.util.List;
 
@@ -46,5 +46,5 @@ public class UserWS {
     public User list(@PathParam("id") Long id) {
         // 4 - O método do Panache `findById` recupera um objeto da classe User.
         return User.findById(id);
-    }    
+    }
 }
