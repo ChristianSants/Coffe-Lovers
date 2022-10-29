@@ -1,5 +1,6 @@
 package dev.ifrs.Model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
@@ -7,6 +8,8 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 @Entity
 public class User extends PanacheEntity {
     private String nome;
+    
+    @Column(unique = true)
     private String login;
     private String senha;
 

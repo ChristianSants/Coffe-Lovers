@@ -6,9 +6,11 @@ import io.quarkus.vertx.http.runtime.devmode.Json;
 
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -54,4 +56,17 @@ public interface UserClient {
     @Transactional
     public String find(@PathParam("id") Long id);
 
+    @DELETE
+    @Path("/delete/{id}")
+    @Consumes(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    public String delete(@PathParam("id") Long id);
+
+    @PUT
+    @Path("/edit/{id}/{nome}/{senha}")
+    @Consumes(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Transactional
+    public String edit(@PathParam("id") Long id, @PathParam("nome") String nome, @PathParam("senha") String senha);
 }

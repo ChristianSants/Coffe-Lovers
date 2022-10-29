@@ -28,12 +28,14 @@ public class LoginWS {
     // @Produces(MediaType.APPLICATION_JSON)
     public boolean login(@FormParam("login") String login, @FormParam("senha") String senha) {
         User u = User.find("login", login).firstResult();
-        if(u.getSenha().equals(senha)){
-            //chama jwt
-            
-            return true;
+        if(u != null){
+            if(u.getSenha().equals(senha)){
+                //chama jwt
+                
+                return true;
+            }
         }
-
+        
         return false;
     }
   
