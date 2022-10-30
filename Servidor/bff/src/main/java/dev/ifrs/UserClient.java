@@ -2,8 +2,10 @@ package dev.ifrs;
 
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
+import io.quarkus.oidc.token.propagation.AccessToken;
 import io.quarkus.vertx.http.runtime.devmode.Json;
 
+import javax.annotation.security.RolesAllowed;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -33,6 +35,7 @@ import java.util.Set;
  *     }
  * }
  */
+@AccessToken
 @RegisterRestClient(baseUri = "http://localhost:8081/user")
 public interface UserClient {
     @POST
@@ -46,6 +49,7 @@ public interface UserClient {
     @Path("/list")
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed({"User"})
     @Transactional
     public String list();
 
@@ -53,6 +57,7 @@ public interface UserClient {
     @Path("/list/{id}")
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed({"User"})
     @Transactional
     public String find(@PathParam("id") Long id);
 
@@ -60,6 +65,7 @@ public interface UserClient {
     @Path("/delete/{id}")
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed({"User"})
     @Transactional
     public String delete(@PathParam("id") Long id);
 
@@ -67,6 +73,7 @@ public interface UserClient {
     @Path("/edit/{id}/{nome}/{senha}")
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed({"User"})
     @Transactional
     public String edit(@PathParam("id") Long id, @PathParam("nome") String nome, @PathParam("senha") String senha);
 }

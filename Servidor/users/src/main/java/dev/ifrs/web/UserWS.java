@@ -2,6 +2,8 @@ package dev.ifrs.web;
 
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
+import javax.persistence.Access;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -36,6 +38,7 @@ public class UserWS {
 
     @GET
     @Path("/list")
+    @RolesAllowed({"Admin"})
     @Produces(MediaType.APPLICATION_JSON)
     public List<User> list() {
         // 3 - O método `listAll` recupera todos os objetos da classe User.
@@ -44,6 +47,7 @@ public class UserWS {
 
     @GET
     @Path("/list/{id}")
+    @RolesAllowed({"User"})
     @Produces(MediaType.APPLICATION_JSON)
     public User list(@PathParam("id") Long id) {
         // 4 - O método do Panache `findById` recupera um objeto da classe User.
@@ -52,6 +56,7 @@ public class UserWS {
 
     @DELETE
     @Path("/delete/{id}")
+    @RolesAllowed({"User"})
     @Produces(MediaType.APPLICATION_JSON)
     public User delete(@PathParam("id") Long id) {
         User u = User.findById(id);
@@ -61,6 +66,7 @@ public class UserWS {
 
     @PUT
     @Path("/edit/{id}/{nome}/{senha}")
+    @RolesAllowed({"User"})
     @Produces(MediaType.APPLICATION_JSON)
     public User edit(@PathParam("id") Long id, @PathParam("nome") String nome, @PathParam("senha") String senha) {
         User u = User.findById(id);

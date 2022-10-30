@@ -1,5 +1,6 @@
 package dev.ifrs;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
@@ -40,6 +41,7 @@ public class Bff {
     @Path("/user/list")
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed({"User"})
     @Transactional
     public String listUser() {
         return user.list();
@@ -49,6 +51,7 @@ public class Bff {
     @Path("/user/list/{id}")
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed({"User"})
     @Transactional
     public String listUser(@PathParam("id") Long id) {
         return user.find(id);
@@ -58,6 +61,7 @@ public class Bff {
     @Path("/user/delete/{id}")
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed({"User"})
     @Transactional
     public String deleteUser(@PathParam("id") Long id) {
         return user.delete(id);
@@ -67,6 +71,7 @@ public class Bff {
     @Path("/user/edit/{id}/{nome}/{senha}")
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed({"User"})
     @Transactional
     public String editUser(@PathParam("id") Long id, @PathParam("nome") String nome, @PathParam("senha") String senha) {
         return user.edit(id, nome, senha);
