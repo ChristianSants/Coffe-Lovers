@@ -30,6 +30,5 @@ public interface LoginClient {
     @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    @Transactional
     public String login(@FormParam("login") String login, @FormParam("senha") String senha);    
 }

@@ -3,6 +3,7 @@ package dev.ifrs.web;
 import java.util.List;
 
 import javax.annotation.security.RolesAllowed;
+import javax.annotation.security.PermitAll;
 import javax.persistence.Access;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
@@ -21,9 +22,10 @@ import dev.ifrs.Model.User;
 @Path("/user")
 @Transactional
 public class UserWS {
+
     @POST
-    @Transactional
     @Path("/save")
+    @PermitAll
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
     public User save(@FormParam("name") String name, @FormParam("login") String login, @FormParam("senha") String senha) {

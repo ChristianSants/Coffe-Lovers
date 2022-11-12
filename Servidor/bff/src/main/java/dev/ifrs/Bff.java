@@ -1,6 +1,7 @@
 package dev.ifrs;
 
 import javax.annotation.security.RolesAllowed;
+import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
@@ -30,9 +31,9 @@ public class Bff {
 
     @POST
     @Path("/user/save")
+    @PermitAll
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    @Transactional
     public String save(@FormParam("name") String name, @FormParam("login") String login, @FormParam("senha") String senha) {
         return user.save(name, login, senha);
     }
@@ -42,7 +43,6 @@ public class Bff {
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed({"User"})
-    @Transactional
     public String listUser() {
         return user.list();
     }
@@ -52,7 +52,6 @@ public class Bff {
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed({"User"})
-    @Transactional
     public String listUser(@PathParam("id") Long id) {
         return user.find(id);
     }
@@ -62,7 +61,6 @@ public class Bff {
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed({"User"})
-    @Transactional
     public String deleteUser(@PathParam("id") Long id) {
         return user.delete(id);
     }
@@ -72,7 +70,6 @@ public class Bff {
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed({"User"})
-    @Transactional
     public String editUser(@PathParam("id") Long id, @PathParam("nome") String nome, @PathParam("senha") String senha) {
         return user.edit(id, nome, senha);
     }
