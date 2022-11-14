@@ -2,10 +2,7 @@ package dev.ifrs;
 
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
-import io.quarkus.oidc.token.propagation.AccessToken;
-
-import javax.annotation.security.RolesAllowed;
-import javax.transaction.Transactional;
+import javax.annotation.security.PermitAll;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
@@ -28,6 +25,7 @@ import javax.ws.rs.core.MediaType;
 @RegisterRestClient(baseUri = "http://localhost:8081/login")
 public interface LoginClient {
     @POST
+    @PermitAll
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
     public String login(@FormParam("login") String login, @FormParam("senha") String senha);    

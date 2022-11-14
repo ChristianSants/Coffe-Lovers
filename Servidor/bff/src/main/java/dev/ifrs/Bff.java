@@ -1,9 +1,8 @@
 package dev.ifrs;
 
-import javax.annotation.security.RolesAllowed;
 import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
@@ -16,10 +15,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.eclipse.microprofile.rest.client.inject.RestClient;
-import org.jboss.resteasy.annotations.Form;
-
-import io.quarkus.vertx.http.runtime.devmode.Json;
-import io.vertx.mutiny.ext.auth.User;
 
 @Path("/bff")
 public class Bff {
@@ -81,9 +76,9 @@ public class Bff {
 
     @POST
     @Path("/login")
+    @PermitAll
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    @Transactional
     public String login(@FormParam("login") String login, @FormParam("senha") String senha){
         return lg.login(login, senha);
     }

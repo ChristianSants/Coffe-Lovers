@@ -2,9 +2,8 @@ package dev.ifrs.web;
 
 import java.util.List;
 
-import javax.annotation.security.RolesAllowed;
 import javax.annotation.security.PermitAll;
-import javax.persistence.Access;
+import javax.annotation.security.RolesAllowed;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -40,7 +39,7 @@ public class UserWS {
 
     @GET
     @Path("/list")
-    @RolesAllowed({"Admin"})
+    @RolesAllowed({"User"})
     @Produces(MediaType.APPLICATION_JSON)
     public List<User> list() {
         // 3 - O método `listAll` recupera todos os objetos da classe User.
