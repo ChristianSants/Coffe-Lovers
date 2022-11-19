@@ -1,10 +1,10 @@
 package dev.ifrs.Model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
@@ -28,13 +28,15 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
  * }
  */
 @Entity
-public class Cafeteria extends PanacheEntity {
+public class Cafe extends PanacheEntity {
 
     private String nome;
-    private String endereco;
+    private int nota;
+    private String tipo;
 
-    // @OneToOne(mappedBy = "cafe", cascade = CascadeType.ALL,fetch = FetchType.LAZY, optional = false)
-    // private Cafe cafe;
+    // @OneToOne(fetch = FetchType.LAZY)
+    // @JoinColumn(name = "cafeteria_id")
+    // private Cafeteria cafeteria;
 
     public String getNome() {
         return this.nome;
@@ -44,11 +46,19 @@ public class Cafeteria extends PanacheEntity {
         this.nome = nome;
     }
 
-    public String getEndereco() {
-        return this.endereco;
+    public int getNota() {
+        return this.nota;
     }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
+    public void setNota(int nota) {
+        this.nota = nota;
+    }
+
+    public String getTipo() {
+        return this.tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 }

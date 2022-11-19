@@ -15,21 +15,21 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import dev.ifrs.Model.Cafeteria;
+import dev.ifrs.Model.Cafe;
 
-@Path("/cafeteria")
+@Path("/cafe")
 @Transactional
-public class CafeteriaWS {
-
+public class CafeWS {
     @POST
     @Path("/save")
     // @PermitAll
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public Cafeteria save(@FormParam("nome") String nome, @FormParam("endereco") String endereco) {
-        Cafeteria c = new Cafeteria();
+    public Cafe save(@FormParam("nome") String nome, @FormParam("nota") int nota,  @FormParam("tipo") String tipo) {
+        Cafe c = new Cafe();
         c.setNome(nome);
-        c.setEndereco(endereco);
+        c.setNota(nota);
+        c.setTipo(tipo);
         // 2 - O método do Panache `persist` possibilita persistir um objeto.
         c.persist();
         return c;
@@ -39,38 +39,39 @@ public class CafeteriaWS {
     @Path("/list")
     // @RolesAllowed({"User"})
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Cafeteria> list() {
+    public List<Cafe> list() {
         // 3 - O método `listAll` recupera todos os objetos da classe User.
-        return Cafeteria.listAll();
+        return Cafe.listAll();
     }
 
     @GET
     @Path("/list/{id}")
     // @RolesAllowed({"User"})
     @Produces(MediaType.APPLICATION_JSON)
-    public Cafeteria list(@PathParam("id") Long id) {
+    public Cafe list(@PathParam("id") Long id) {
         // 4 - O método do Panache `findById` recupera um objeto da classe User.
-        return Cafeteria.findById(id);
+        return Cafe.findById(id);
     }
 
     @DELETE
     @Path("/delete/{id}")
     // @RolesAllowed({"User"})
     @Produces(MediaType.APPLICATION_JSON)
-    public Cafeteria delete(@PathParam("id") Long id) {
-        Cafeteria c = Cafeteria.findById(id);
+    public Cafe delete(@PathParam("id") Long id) {
+        Cafe c = Cafe.findById(id);
         c.delete();
         return c;
     }
 
     @PUT
-    @Path("/edit/{id}/{nome}/{endereco}")
+    @Path("/edit/{id}/{nome}/{nota}/{tipo}")
     // @RolesAllowed({"User"})
     @Produces(MediaType.APPLICATION_JSON)
-    public Cafeteria edit(@PathParam("id") Long id, @PathParam("nome") String nome, @PathParam("endereco") String endereco) {
-        Cafeteria c = Cafeteria.findById(id);
+    public Cafe edit(@PathParam("id") Long id, @PathParam("nome") String nome, @PathParam("nota") int nota, @PathParam("tipo") String tipo) {
+        Cafe c = Cafe.findById(id);
         c.setNome(nome);
-        c.setEndereco(endereco);
+        c.setNota(nota);
+        c.setTipo(tipo);
         return c;
     }
 
