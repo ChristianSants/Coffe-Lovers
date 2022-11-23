@@ -29,12 +29,8 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
  */
 @Entity
 public class Cafeteria extends PanacheEntity {
-
     private String nome;
     private String endereco;
-
-    // @OneToOne(mappedBy = "cafe", cascade = CascadeType.ALL,fetch = FetchType.LAZY, optional = false)
-    // private Cafe cafe;
 
     public String getNome() {
         return this.nome;

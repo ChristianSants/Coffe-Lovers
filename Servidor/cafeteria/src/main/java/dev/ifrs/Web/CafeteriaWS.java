@@ -3,6 +3,7 @@ package dev.ifrs.Web;
 import java.util.List;
 
 import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -23,7 +24,7 @@ public class CafeteriaWS {
 
     @POST
     @Path("/save")
-    // @PermitAll
+    // @RolesAllowed({"User"})
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
     public Cafeteria save(@FormParam("nome") String nome, @FormParam("endereco") String endereco) {
@@ -64,10 +65,10 @@ public class CafeteriaWS {
     }
 
     @PUT
-    @Path("/edit/{id}/{nome}/{endereco}")
+    @Path("/edit")
     // @RolesAllowed({"User"})
     @Produces(MediaType.APPLICATION_JSON)
-    public Cafeteria edit(@PathParam("id") Long id, @PathParam("nome") String nome, @PathParam("endereco") String endereco) {
+    public Cafeteria edit(@FormParam("id") Long id, @FormParam("nome") String nome, @FormParam("endereco") String endereco) {
         Cafeteria c = Cafeteria.findById(id);
         c.setNome(nome);
         c.setEndereco(endereco);

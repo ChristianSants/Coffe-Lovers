@@ -29,8 +29,8 @@ public class Bff {
     @PermitAll
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public String save(@FormParam("name") String name, @FormParam("login") String login, @FormParam("senha") String senha) {
-        return user.save(name, login, senha);
+    public String saveUser(@FormParam("nome") String nome, @FormParam("login") String login, @FormParam("senha") String senha) {
+        return user.save(nome, login, senha);
     }
     
     @GET
@@ -61,11 +61,11 @@ public class Bff {
     }
 
     @PUT
-    @Path("/user/edit/{id}/{nome}/{senha}")
-    @Consumes(MediaType.TEXT_PLAIN)
+    @Path("/user/edit")
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed({"User"})
-    public String editUser(@PathParam("id") Long id, @PathParam("nome") String nome, @PathParam("senha") String senha) {
+    public String editUser(@FormParam("id") Long id, @FormParam("nome") String nome, @FormParam("senha") String senha) {
         return user.edit(id, nome, senha);
     }
 

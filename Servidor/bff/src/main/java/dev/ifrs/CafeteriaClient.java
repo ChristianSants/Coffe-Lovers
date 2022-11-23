@@ -30,14 +30,15 @@ import javax.ws.rs.core.MediaType;
  * }
  */
 @AccessToken
-@RegisterRestClient(baseUri = "http://localhost:8081/user")
-public interface UserClient {
+@RegisterRestClient(baseUri = "http://localhost:8083/cafeteria")
+public interface CafeteriaClient {
     @POST
     @Path("/save")
-    @PermitAll
+    @RolesAllowed({"User"})
+    // @PermitAll
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public String save(@FormParam("nome") String nome, @FormParam("login") String login, @FormParam("senha") String senha);
+    public String save(@FormParam("nome") String nome, @FormParam("endereco") String endereco);
     
     @GET
     @Path("/list")
@@ -61,9 +62,9 @@ public interface UserClient {
     public String delete(@PathParam("id") Long id);
 
     @PUT
-    @Path("/edit")
+    @Path("/edit/{id}/{nome}/{endereco}")
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed({"User"})
-    public String edit(@FormParam("id") Long id, @FormParam("nome") String nome, @FormParam("senha") String senha);
+    public String edit(@PathParam("id") Long id, @FormParam("nome") String nome, @FormParam("endereco") String endereco);
 }

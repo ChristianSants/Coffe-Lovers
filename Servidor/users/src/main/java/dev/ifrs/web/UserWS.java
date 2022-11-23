@@ -27,9 +27,9 @@ public class UserWS {
     @PermitAll
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public User save(@FormParam("name") String name, @FormParam("login") String login, @FormParam("senha") String senha) {
+    public User save(@FormParam("nome") String nome, @FormParam("login") String login, @FormParam("senha") String senha) {
         User user = new User();
-        user.setNome(name);
+        user.setNome(nome);
         user.setLogin(login);
         user.setSenha(senha);
         // 2 - O método do Panache `persist` possibilita persistir um objeto.
@@ -66,10 +66,10 @@ public class UserWS {
     }
 
     @PUT
-    @Path("/edit/{id}/{nome}/{senha}")
+    @Path("/edit")
     @RolesAllowed({"User"})
     @Produces(MediaType.APPLICATION_JSON)
-    public User edit(@PathParam("id") Long id, @PathParam("nome") String nome, @PathParam("senha") String senha) {
+    public User edit(@FormParam("id") Long id, @FormParam("nome") String nome, @FormParam("senha") String senha) {
         User u = User.findById(id);
         u.setNome(nome);
         u.setSenha(senha);

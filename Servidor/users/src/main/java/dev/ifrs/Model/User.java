@@ -1,9 +1,11 @@
 package dev.ifrs.Model;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -19,10 +21,16 @@ public class User extends PanacheEntity {
     private String login;
     private String senha;
 
-    // @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    // // name = nome da coluna que irá armazenar a chave estrangeira na outra tabela
-    // @JoinColumn(name = "user_id")
-    // private List<Cafes> cafes;
+    // @ElementCollection
+    // private List<Long> cafes;
+        
+    // @OneToMany(mappedBy="user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	// @JoinColumn(name="cafe_id")
+	// private List<Long> consultas = new LinkesdList<>();
+
+    public User() {
+        // this.cafes = new LinkedList<>();
+    }
 
     public void setNome(String nome){
         this.nome = nome;
@@ -47,4 +55,16 @@ public class User extends PanacheEntity {
     public String getSenha(){
         return this.senha;
     }
+
+    // public List<Long> getCafes() {
+    //     return cafes;
+    // }
+
+    // public void setCafes(List<Long> cafes) {
+    //     this.cafes = cafes;
+    // }
+
+    // public void addCafe(Long cafe) {
+    //     this.cafes.add(cafe);
+    // }
 }

@@ -29,14 +29,11 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
  */
 @Entity
 public class Cafe extends PanacheEntity {
-
     private String nome;
     private int nota;
     private String tipo;
-
-    // @OneToOne(fetch = FetchType.LAZY)
-    // @JoinColumn(name = "cafeteria_id")
-    // private Cafeteria cafeteria;
+    private boolean favorito;
+    private int cafeteria_id;
 
     public String getNome() {
         return this.nome;
@@ -61,4 +58,21 @@ public class Cafe extends PanacheEntity {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+
+    public boolean getFavorito() {
+        return favorito;
+    }
+
+    public void setFavorito(boolean favorito) {
+        this.favorito = favorito;
+    }
+
+    public int getCafeteria_id() {
+        return cafeteria_id;
+    }
+
+    public void setCafeteria_id(int cafeteria_id) {
+        this.cafeteria_id = cafeteria_id;
+    }
+
 }
