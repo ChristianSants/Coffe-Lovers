@@ -1,11 +1,6 @@
 package dev.ifrs.Model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
@@ -31,6 +26,7 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 public class Cafeteria extends PanacheEntity {
     private String nome;
     private String endereco;
+    private Long user_id;
 
     public String getNome() {
         return this.nome;
@@ -46,5 +42,13 @@ public class Cafeteria extends PanacheEntity {
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
+    }
+
+    public Long getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Long user_id) {
+        this.user_id = user_id;
     }
 }

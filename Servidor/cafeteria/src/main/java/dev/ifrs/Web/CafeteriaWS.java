@@ -27,10 +27,11 @@ public class CafeteriaWS {
     // @RolesAllowed({"User"})
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public Cafeteria save(@FormParam("nome") String nome, @FormParam("endereco") String endereco) {
+    public Cafeteria save(@FormParam("nome") String nome, @FormParam("endereco") String endereco, @FormParam("user_id") Long user_id) {
         Cafeteria c = new Cafeteria();
         c.setNome(nome);
         c.setEndereco(endereco);
+        c.setUser_id(user_id);
         // 2 - O método do Panache `persist` possibilita persistir um objeto.
         c.persist();
         return c;

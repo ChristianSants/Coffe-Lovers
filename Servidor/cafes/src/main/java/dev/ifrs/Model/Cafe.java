@@ -1,11 +1,6 @@
 package dev.ifrs.Model;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
@@ -33,7 +28,8 @@ public class Cafe extends PanacheEntity {
     private int nota;
     private String tipo;
     private boolean favorito;
-    private int cafeteria_id;
+    private Long cafeteria_id;
+    private Long user_id;
 
     public String getNome() {
         return this.nome;
@@ -67,12 +63,20 @@ public class Cafe extends PanacheEntity {
         this.favorito = favorito;
     }
 
-    public int getCafeteria_id() {
+    public Long getCafeteria_id() {
         return cafeteria_id;
     }
 
-    public void setCafeteria_id(int cafeteria_id) {
+    public void setCafeteria_id(Long cafeteria_id) {
         this.cafeteria_id = cafeteria_id;
+    }
+
+    public Long getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Long user_id) {
+        this.user_id = user_id;
     }
 
 }

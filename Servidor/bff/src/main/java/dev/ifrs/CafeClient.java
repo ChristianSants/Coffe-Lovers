@@ -9,6 +9,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.PATCH;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -30,14 +31,14 @@ import javax.ws.rs.core.MediaType;
  */
 
 // @AccessToken
-@RegisterRestClient(baseUri = "http://localhost:8083/cafeteria")
-public interface CafeteriaClient {
+@RegisterRestClient(baseUri = "http://localhost:8084/cafe")
+public interface CafeClient {
     @POST
     @Path("/save")
     //@RolesAllowed({"User"})
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public String save(@FormParam("nome") String nome, @FormParam("endereco") String endereco, @FormParam("user_id") Long user_id);
+    public String save(@FormParam("nome") String nome, @FormParam("nota") int nota,  @FormParam("tipo") String tipo, @FormParam("favorito") boolean favorito, @FormParam("cafeteria_id") Long cafeteria_id, @FormParam("user_id") Long user_id);
     
     @GET
     @Path("/list")
@@ -65,5 +66,17 @@ public interface CafeteriaClient {
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)
     //@RolesAllowed({"User"})
-    public String edit(@FormParam("id") Long id, @FormParam("nome") String nome, @FormParam("endereco") String endereco);
+    public String edit(@FormParam("id") Long id, @FormParam("nome") String nome, @FormParam("nota") int nota,  @FormParam("tipo") String tipo, @FormParam("favorito") boolean favorito, @FormParam("cafeteria_id") Long cafeteria_id);
+
+    @PATCH
+    @Path("/favoritar")
+    // @RolesAllowed({"User"})
+    @Produces(MediaType.APPLICATION_JSON)
+    public String favoritarDesfavoritar(@FormParam("id") Long id, @FormParam("favorito") boolean favorito);
+
+    @GET
+    @Path("/list/user/{id}")
+    // @RolesAllowed({"User"})
+    @Produces(MediaType.APPLICATION_JSON)
+    public String listByUserId(@PathParam("id") Long id);
 }
