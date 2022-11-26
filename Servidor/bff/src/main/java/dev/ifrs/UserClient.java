@@ -32,13 +32,14 @@ import javax.ws.rs.core.MediaType;
 @AccessToken
 @RegisterRestClient(baseUri = "http://localhost:8081/user")
 public interface UserClient {
-    @POST
-    @Path("/save")
-    @PermitAll
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    @Produces(MediaType.APPLICATION_JSON)
-    public String save(@FormParam("nome") String nome, @FormParam("login") String login, @FormParam("senha") String senha);
     
+    //@POST
+    //@Path("/save")
+    //@PermitAll
+    //@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    //@Produces(MediaType.APPLICATION_JSON)
+    //public String save(@FormParam("nome") String nome, @FormParam("login") String login, @FormParam("senha") String senha);
+
     @GET
     @Path("/list")
     @Consumes(MediaType.TEXT_PLAIN)

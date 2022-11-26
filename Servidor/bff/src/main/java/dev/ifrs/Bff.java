@@ -17,22 +17,30 @@ import javax.ws.rs.core.MediaType;
 
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
+import dev.ifrs.Model.User;
+
 @Path("/bff")
 public class Bff {
 
     /** ----------- USER ----------- */
     @Inject
     @RestClient
-    UserClient user;
+    UserSaveClient userSave;
 
     @POST
     @Path("/user/save")
     @PermitAll
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public String saveUser(@FormParam("nome") String nome, @FormParam("login") String login, @FormParam("senha") String senha) {
-        return user.save(nome, login, senha);
+    public User saveUser(@FormParam("nome") String nome, @FormParam("login") String login, @FormParam("senha") String senha) {
+        return userSave.save(nome, login, senha);
     }
+
+
+    
+    @Inject
+    @RestClient
+    UserClient user;
     
     @GET
     @Path("/user/list")
