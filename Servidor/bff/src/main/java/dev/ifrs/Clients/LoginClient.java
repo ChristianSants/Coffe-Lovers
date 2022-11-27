@@ -1,4 +1,4 @@
-package dev.ifrs;
+package dev.ifrs.Clients;
 
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 

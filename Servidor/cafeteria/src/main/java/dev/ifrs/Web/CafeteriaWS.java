@@ -24,7 +24,7 @@ public class CafeteriaWS {
 
     @POST
     @Path("/save")
-    // @RolesAllowed({"User"})
+    @RolesAllowed({"User"})
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
     public Cafeteria save(@FormParam("nome") String nome, @FormParam("endereco") String endereco, @FormParam("user_id") Long user_id) {
@@ -39,7 +39,7 @@ public class CafeteriaWS {
 
     @GET
     @Path("/list")
-    // @RolesAllowed({"User"})
+    @RolesAllowed({"User"})
     @Produces(MediaType.APPLICATION_JSON)
     public List<Cafeteria> list() {
         // 3 - O método `listAll` recupera todos os objetos da classe User.
@@ -48,7 +48,7 @@ public class CafeteriaWS {
 
     @GET
     @Path("/list/{id}")
-    // @RolesAllowed({"User"})
+    @RolesAllowed({"User"})
     @Produces(MediaType.APPLICATION_JSON)
     public Cafeteria list(@PathParam("id") Long id) {
         // 4 - O método do Panache `findById` recupera um objeto da classe User.
@@ -57,7 +57,7 @@ public class CafeteriaWS {
 
     @DELETE
     @Path("/delete/{id}")
-    // @RolesAllowed({"User"})
+    @RolesAllowed({"User"})
     @Produces(MediaType.APPLICATION_JSON)
     public Cafeteria delete(@PathParam("id") Long id) {
         Cafeteria c = Cafeteria.findById(id);
@@ -67,7 +67,7 @@ public class CafeteriaWS {
 
     @PUT
     @Path("/edit")
-    // @RolesAllowed({"User"})
+    @RolesAllowed({"User"})
     @Produces(MediaType.APPLICATION_JSON)
     public Cafeteria edit(@FormParam("id") Long id, @FormParam("nome") String nome, @FormParam("endereco") String endereco) {
         Cafeteria c = Cafeteria.findById(id);
