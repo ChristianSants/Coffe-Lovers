@@ -1,4 +1,4 @@
-package dev.ifrs;
+package dev.ifrs.Clients;
 
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
@@ -6,6 +6,9 @@ import dev.ifrs.Model.User;
 import io.quarkus.oidc.token.propagation.AccessToken;
 
 import javax.annotation.security.RolesAllowed;
+
+import java.util.List;
+
 import javax.annotation.security.PermitAll;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -30,14 +33,34 @@ import javax.ws.rs.core.MediaType;
  *     }
  * }
  */
+@AccessToken
 @RegisterRestClient(baseUri = "http://localhost:8081/user")
-public interface UserSaveClient {
-    
-    @POST
-    @Path("/save")
-    @PermitAll
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+public interface UserClient {
+    @GET
+    @Path("/list")
+    @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)
-    public User save(@FormParam("nome") String nome, @FormParam("login") String login, @FormParam("senha") String senha);
+    @RolesAllowed({"User"})
+    public List<User> list();
 
+    @GET
+    @Path("/list/{id}")
+    @Consumes(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed({"User"})
+    public User find(@PathParam("id") Long id);
+
+    @DELETE
+    @Path("/delete/{id}")
+    @Consumes(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed({"User"})
+    public User delete(@PathParam("id") Long id);
+
+    @PUT
+    @Path("/edit")
+    @Consumes(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed({"User"})
+    public User edit(@FormParam("id") Long id, @FormParam("nome") String nome, @FormParam("senha") String senha);
 }

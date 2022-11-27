@@ -1,8 +1,11 @@
-package dev.ifrs;
+package dev.ifrs.Clients;
 
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
+import dev.ifrs.Model.Cafeteria;
 import io.quarkus.oidc.token.propagation.AccessToken;
+
+import java.util.List;
 
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
@@ -37,33 +40,33 @@ public interface CafeteriaClient {
     @RolesAllowed({"User"})
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public String save(@FormParam("nome") String nome, @FormParam("endereco") String endereco, @FormParam("user_id") Long user_id);
+    public Cafeteria save(@FormParam("nome") String nome, @FormParam("endereco") String endereco, @FormParam("user_id") Long user_id);
     
     @GET
     @Path("/list")
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed({"User"})
-    public String list();
+    public List<Cafeteria> list();
 
     @GET
     @Path("/list/{id}")
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed({"User"})
-    public String find(@PathParam("id") Long id);
+    public Cafeteria find(@PathParam("id") Long id);
 
     @DELETE
     @Path("/delete/{id}")
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed({"User"})
-    public String delete(@PathParam("id") Long id);
+    public Cafeteria delete(@PathParam("id") Long id);
 
     @PUT
     @Path("/edit")
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed({"User"})
-    public String edit(@FormParam("id") Long id, @FormParam("nome") String nome, @FormParam("endereco") String endereco);
+    public Cafeteria edit(@FormParam("id") Long id, @FormParam("nome") String nome, @FormParam("endereco") String endereco);
 }

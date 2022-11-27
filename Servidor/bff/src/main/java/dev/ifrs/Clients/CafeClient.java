@@ -1,8 +1,11 @@
-package dev.ifrs;
+package dev.ifrs.Clients;
 
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
+import dev.ifrs.Model.Cafe;
 import io.quarkus.oidc.token.propagation.AccessToken;
+
+import java.util.List;
 
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
@@ -38,45 +41,45 @@ public interface CafeClient {
     @RolesAllowed({"User"})
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public String save(@FormParam("nome") String nome, @FormParam("nota") int nota,  @FormParam("tipo") String tipo, @FormParam("favorito") boolean favorito, @FormParam("cafeteria_id") Long cafeteria_id, @FormParam("user_id") Long user_id);
+    public Cafe save(@FormParam("nome") String nome, @FormParam("nota") int nota,  @FormParam("tipo") String tipo, @FormParam("favorito") boolean favorito, @FormParam("cafeteria_id") Long cafeteria_id, @FormParam("user_id") Long user_id);
     
     @GET
     @Path("/list")
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed({"User"})
-    public String list();
+    public List<Cafe> list();
 
     @GET
     @Path("/list/{id}")
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed({"User"})
-    public String find(@PathParam("id") Long id);
+    public Cafe find(@PathParam("id") Long id);
 
     @DELETE
     @Path("/delete/{id}")
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed({"User"})
-    public String delete(@PathParam("id") Long id);
+    public Cafe delete(@PathParam("id") Long id);
 
     @PUT
     @Path("/edit")
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed({"User"})
-    public String edit(@FormParam("id") Long id, @FormParam("nome") String nome, @FormParam("nota") int nota,  @FormParam("tipo") String tipo, @FormParam("favorito") boolean favorito, @FormParam("cafeteria_id") Long cafeteria_id);
+    public Cafe edit(@FormParam("id") Long id, @FormParam("nome") String nome, @FormParam("nota") int nota,  @FormParam("tipo") String tipo, @FormParam("favorito") boolean favorito, @FormParam("cafeteria_id") Long cafeteria_id);
 
     @PATCH
     @Path("/favoritar")
     @RolesAllowed({"User"})
     @Produces(MediaType.APPLICATION_JSON)
-    public String favoritarDesfavoritar(@FormParam("id") Long id, @FormParam("favorito") boolean favorito);
+    public Cafe favoritarDesfavoritar(@FormParam("id") Long id, @FormParam("favorito") boolean favorito);
 
     @GET
     @Path("/list/user/{id}")
     @RolesAllowed({"User"})
     @Produces(MediaType.APPLICATION_JSON)
-    public String listByUserId(@PathParam("id") Long id);
+    public List<Cafe> listByUserId(@PathParam("id") Long id);
 }
