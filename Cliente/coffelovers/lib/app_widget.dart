@@ -1,3 +1,4 @@
+import 'package:coffelovers/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -10,7 +11,8 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(primarySwatch: Colors.red),
-      home: LoginPage(),
+      //home: LoginPage(),
+      home: HomePage(),
     );
   }
 }
