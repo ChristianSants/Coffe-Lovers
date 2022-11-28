@@ -1,5 +1,6 @@
 import 'dart:html';
 
+import 'package:coffelovers/pages/favoritos_page.dart';
 import 'package:flutter/material.dart';
 
 class NavBar extends StatelessWidget {
@@ -32,7 +33,7 @@ class NavBar extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.favorite),
             title: Text('Favoritos'),
-            onTap: (() => print("Favoritos")),
+            onTap: (() => FavoritosPage()),
           ),
           ListTile(
             leading: Icon(Icons.people),
