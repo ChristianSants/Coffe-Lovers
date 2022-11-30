@@ -5,6 +5,7 @@ public class User {
     private String nome;
     private String login;
     private String senha;
+    private String imagem;
 
     public User() {
     }
@@ -39,5 +40,13 @@ public class User {
 
     public String getSenha(){
         return this.senha;
+    }
+
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
     }
 }

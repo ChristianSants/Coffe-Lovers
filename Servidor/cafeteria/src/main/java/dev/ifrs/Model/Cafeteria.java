@@ -26,6 +26,7 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 public class Cafeteria extends PanacheEntity {
     private String nome;
     private String endereco;
+    private String imagem;
     private Long user_id;
 
     public String getNome() {
@@ -42,6 +43,14 @@ public class Cafeteria extends PanacheEntity {
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
+    }
+
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
     }
 
     public Long getUser_id() {

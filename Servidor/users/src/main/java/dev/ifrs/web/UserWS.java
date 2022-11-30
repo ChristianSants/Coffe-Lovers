@@ -15,7 +15,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-
 import dev.ifrs.Model.User;
 
 @Path("/user")
@@ -27,11 +26,12 @@ public class UserWS {
     @PermitAll
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public User save(@FormParam("nome") String nome, @FormParam("login") String login, @FormParam("senha") String senha) {
+    public User save(@FormParam("nome") String nome, @FormParam("login") String login, @FormParam("senha") String senha, @FormParam("imagem") String imagem) {
         User user = new User();
         user.setNome(nome);
         user.setLogin(login);
         user.setSenha(senha);
+        user.setImagem(imagem);
         // 2 - O método do Panache `persist` possibilita persistir um objeto.
         user.persist();
         return user;
@@ -69,10 +69,11 @@ public class UserWS {
     @Path("/edit")
     @RolesAllowed({"User"})
     @Produces(MediaType.APPLICATION_JSON)
-    public User edit(@FormParam("id") Long id, @FormParam("nome") String nome, @FormParam("senha") String senha) {
+    public User edit(@FormParam("id") Long id, @FormParam("nome") String nome, @FormParam("senha") String senha, @FormParam("imagem") String imagem) {
         User u = User.findById(id);
         u.setNome(nome);
         u.setSenha(senha);
+        u.setImagem(imagem);
         return u;
     }
 

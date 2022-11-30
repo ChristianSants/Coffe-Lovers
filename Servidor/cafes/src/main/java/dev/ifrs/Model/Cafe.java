@@ -28,6 +28,7 @@ public class Cafe extends PanacheEntity {
     private int nota;
     private String tipo;
     private boolean favorito;
+    private String imagem;
     private Long cafeteria_id;
     private Long user_id;
 
@@ -61,6 +62,14 @@ public class Cafe extends PanacheEntity {
 
     public void setFavorito(boolean favorito) {
         this.favorito = favorito;
+    }
+
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
     }
 
     public Long getCafeteria_id() {

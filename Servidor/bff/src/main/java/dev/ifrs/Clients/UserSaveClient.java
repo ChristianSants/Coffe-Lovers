@@ -31,6 +31,6 @@ public interface UserSaveClient {
     @PermitAll
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public User save(@FormParam("nome") String nome, @FormParam("login") String login, @FormParam("senha") String senha);
+    public User save(@FormParam("nome") String nome, @FormParam("login") String login, @FormParam("senha") String senha, @FormParam("imagem") String imagem);
 
 }

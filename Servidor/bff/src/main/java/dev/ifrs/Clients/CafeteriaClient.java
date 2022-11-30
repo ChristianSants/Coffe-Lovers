@@ -40,7 +40,7 @@ public interface CafeteriaClient {
     @RolesAllowed({"User"})
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public Cafeteria save(@FormParam("nome") String nome, @FormParam("endereco") String endereco, @FormParam("user_id") Long user_id);
+    public Cafeteria save(@FormParam("nome") String nome, @FormParam("endereco") String endereco, @FormParam("imagem") String imagem, @FormParam("user_id") Long user_id);
     
     @GET
     @Path("/list")
@@ -68,5 +68,5 @@ public interface CafeteriaClient {
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed({"User"})
-    public Cafeteria edit(@FormParam("id") Long id, @FormParam("nome") String nome, @FormParam("endereco") String endereco);
+    public Cafeteria edit(@FormParam("id") Long id, @FormParam("nome") String nome, @FormParam("endereco") String endereco, @FormParam("imagem") String imagem);
 }

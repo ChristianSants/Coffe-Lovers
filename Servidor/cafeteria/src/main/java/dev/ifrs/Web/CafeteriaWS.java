@@ -2,7 +2,6 @@ package dev.ifrs.Web;
 
 import java.util.List;
 
-import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
@@ -27,10 +26,11 @@ public class CafeteriaWS {
     @RolesAllowed({"User"})
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public Cafeteria save(@FormParam("nome") String nome, @FormParam("endereco") String endereco, @FormParam("user_id") Long user_id) {
+    public Cafeteria save(@FormParam("nome") String nome, @FormParam("endereco") String endereco, @FormParam("imagem") String imagem, @FormParam("user_id") Long user_id) {
         Cafeteria c = new Cafeteria();
         c.setNome(nome);
         c.setEndereco(endereco);
+        c.setImagem(imagem);
         c.setUser_id(user_id);
         // 2 - O método do Panache `persist` possibilita persistir um objeto.
         c.persist();
@@ -69,10 +69,11 @@ public class CafeteriaWS {
     @Path("/edit")
     @RolesAllowed({"User"})
     @Produces(MediaType.APPLICATION_JSON)
-    public Cafeteria edit(@FormParam("id") Long id, @FormParam("nome") String nome, @FormParam("endereco") String endereco) {
+    public Cafeteria edit(@FormParam("id") Long id, @FormParam("nome") String nome, @FormParam("endereco") String endereco, @FormParam("imagem") String imagem) {
         Cafeteria c = Cafeteria.findById(id);
         c.setNome(nome);
         c.setEndereco(endereco);
+        c.setImagem(imagem);
         return c;
     }
 

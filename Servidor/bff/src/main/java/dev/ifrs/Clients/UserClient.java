@@ -8,13 +8,10 @@ import io.quarkus.oidc.token.propagation.AccessToken;
 import javax.annotation.security.RolesAllowed;
 
 import java.util.List;
-
-import javax.annotation.security.PermitAll;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -62,5 +59,5 @@ public interface UserClient {
     @Consumes(MediaType.TEXT_PLAIN)
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed({"User"})
-    public User edit(@FormParam("id") Long id, @FormParam("nome") String nome, @FormParam("senha") String senha);
+    public User edit(@FormParam("id") Long id, @FormParam("nome") String nome, @FormParam("senha") String senha, @FormParam("imagem") String imagem);
 }

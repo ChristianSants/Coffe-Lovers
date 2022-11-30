@@ -41,8 +41,8 @@ public class Bff {
     @PermitAll
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public User saveUser(@FormParam("nome") String nome, @FormParam("login") String login, @FormParam("senha") String senha) {
-        return userSave.save(nome, login, senha);
+    public User saveUser(@FormParam("nome") String nome, @FormParam("login") String login, @FormParam("senha") String senha, @FormParam("imagem") String imagem) {
+        return userSave.save(nome, login, senha, imagem);
     }
     
     @Inject
@@ -81,8 +81,8 @@ public class Bff {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed({"User"})
-    public User editUser(@FormParam("id") Long id, @FormParam("nome") String nome, @FormParam("senha") String senha) {
-        return user.edit(id, nome, senha);
+    public User editUser(@FormParam("id") Long id, @FormParam("nome") String nome, @FormParam("senha") String senha, @FormParam("imagem") String imagem) {
+        return user.edit(id, nome, senha, imagem);
     }
 
     /** ----------- LOGIN ----------- */
@@ -109,8 +109,8 @@ public class Bff {
     @RolesAllowed({"User"})
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public Cafeteria saveCafeteria(@FormParam("nome") String nome, @FormParam("endereco") String endereco, @FormParam("user_id") Long user_id) {
-        return cafeteria.save(nome, endereco, user_id);
+    public Cafeteria saveCafeteria(@FormParam("nome") String nome, @FormParam("endereco") String endereco, @FormParam("imagem") String imagem, @FormParam("user_id") Long user_id) {
+        return cafeteria.save(nome, endereco, imagem, user_id);
     }
     
     @GET
@@ -145,8 +145,8 @@ public class Bff {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed({"User"})
-    public Cafeteria editCafeteria(@FormParam("id") Long id, @FormParam("nome") String nome, @FormParam("endereco") String endereco) {
-        return cafeteria.edit(id, nome, endereco);
+    public Cafeteria editCafeteria(@FormParam("id") Long id, @FormParam("nome") String nome, @FormParam("endereco") String endereco, @FormParam("imagem") String imagem) {
+        return cafeteria.edit(id, nome, endereco, imagem);
     }
 
     /** ----------- CAFÉ ----------- */
@@ -159,8 +159,8 @@ public class Bff {
     @RolesAllowed({"User"})
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public Cafe saveCafe(@FormParam("nome") String nome, @FormParam("nota") int nota,  @FormParam("tipo") String tipo, @FormParam("favorito") boolean favorito, @FormParam("cafeteria_id") Long cafeteria_id, @FormParam("user_id") Long user_id) {
-        return cafe.save(nome, nota, tipo, favorito, cafeteria_id, user_id);
+    public Cafe saveCafe(@FormParam("nome") String nome, @FormParam("nota") int nota,  @FormParam("tipo") String tipo, @FormParam("favorito") boolean favorito, @FormParam("imagem") String imagem, @FormParam("cafeteria_id") Long cafeteria_id, @FormParam("user_id") Long user_id) {
+        return cafe.save(nome, nota, tipo, favorito, imagem, cafeteria_id, user_id);
     }
     
     @GET
@@ -195,8 +195,8 @@ public class Bff {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed({"User"})
-    public Cafe editCafe(@FormParam("id") Long id, @FormParam("nome") String nome, @FormParam("nota") int nota,  @FormParam("tipo") String tipo, @FormParam("favorito") boolean favorito, @FormParam("cafeteria_id") Long cafeteria_id) {
-        return cafe.edit(id, nome, nota, tipo, favorito, cafeteria_id);
+    public Cafe editCafe(@FormParam("id") Long id, @FormParam("nome") String nome, @FormParam("nota") int nota,  @FormParam("tipo") String tipo, @FormParam("favorito") boolean favorito, @FormParam("imagem") String imagem, @FormParam("cafeteria_id") Long cafeteria_id) {
+        return cafe.edit(id, nome, nota, tipo, favorito, imagem, cafeteria_id);
     }
 
     @PATCH

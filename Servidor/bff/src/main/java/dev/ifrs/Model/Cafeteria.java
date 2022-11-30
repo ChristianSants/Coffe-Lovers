@@ -4,6 +4,7 @@ public class Cafeteria{
     private Long id;
     private String nome;
     private String endereco;
+    private String imagem;
     private Long user_id;
 
     public Long getId() {
@@ -28,6 +29,14 @@ public class Cafeteria{
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
+    }
+
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
     }
 
     public Long getUser_id() {

@@ -1,7 +1,6 @@
 package dev.ifrs.Web;
 
 import java.util.List;
-
 import javax.annotation.security.RolesAllowed;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
@@ -26,12 +25,13 @@ public class CafeWS {
     @RolesAllowed({"User"})
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public Cafe save(@FormParam("nome") String nome, @FormParam("nota") int nota,  @FormParam("tipo") String tipo, @FormParam("favorito") boolean favorito, @FormParam("cafeteria_id") Long cafeteria_id, @FormParam("user_id") Long user_id) {
+    public Cafe save(@FormParam("nome") String nome, @FormParam("nota") int nota,  @FormParam("tipo") String tipo, @FormParam("favorito") boolean favorito, @FormParam("imagem") String imagem, @FormParam("cafeteria_id") Long cafeteria_id, @FormParam("user_id") Long user_id) {
         Cafe c = new Cafe();
         c.setNome(nome);
         c.setNota(nota);
         c.setTipo(tipo);
         c.setFavorito(favorito);
+        c.setImagem(imagem);
         c.setCafeteria_id(cafeteria_id);
         c.setUser_id(user_id);
         // 2 - O método do Panache `persist` possibilita persistir um objeto.
@@ -71,12 +71,13 @@ public class CafeWS {
     @Path("/edit")
     @RolesAllowed({"User"})
     @Produces(MediaType.APPLICATION_JSON)
-    public Cafe edit(@FormParam("id") Long id, @FormParam("nome") String nome, @FormParam("nota") int nota,  @FormParam("tipo") String tipo, @FormParam("favorito") boolean favorito, @FormParam("cafeteria_id") Long cafeteria_id) {
+    public Cafe edit(@FormParam("id") Long id, @FormParam("nome") String nome, @FormParam("nota") int nota,  @FormParam("tipo") String tipo, @FormParam("favorito") boolean favorito, @FormParam("imagem") String imagem, @FormParam("cafeteria_id") Long cafeteria_id) {
         Cafe c = Cafe.findById(id);
         c.setNome(nome);
         c.setNota(nota);
         c.setTipo(tipo);
         c.setFavorito(favorito);
+        c.setImagem(imagem);
         c.setCafeteria_id(cafeteria_id);
         return c;
     }
@@ -99,5 +100,13 @@ public class CafeWS {
         // 4 - O método do Panache `findById` recupera um objeto da classe User.
         return Cafe.find("user_id", id).list();
     }
+
+    // @GET
+    // @Path("/search/{user_id}/{nome_cafe}")
+    // @RolesAllowed({"User"})
+    // @Produces(MediaType.APPLICATION_JSON)
+    // public List<Cafe> searchByName(@PathParam("user_id") Long user_id, @PathParam("nome_cafe") String nome_cafe) {
+    //     return Cafe.find("user_id = ?1 and nome_cafe LIKE ?2", user_id, '%' + nome_cafe + '%').list();
+    // }
 
 }
