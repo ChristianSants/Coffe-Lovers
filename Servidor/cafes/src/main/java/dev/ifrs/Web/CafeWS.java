@@ -2,6 +2,7 @@ package dev.ifrs.Web;
 
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
+import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -101,12 +102,12 @@ public class CafeWS {
         return Cafe.find("user_id", id).list();
     }
 
-    // @GET
-    // @Path("/search/{user_id}/{nome_cafe}")
-    // @RolesAllowed({"User"})
-    // @Produces(MediaType.APPLICATION_JSON)
-    // public List<Cafe> searchByName(@PathParam("user_id") Long user_id, @PathParam("nome_cafe") String nome_cafe) {
-    //     return Cafe.find("user_id = ?1 and nome_cafe LIKE ?2", user_id, '%' + nome_cafe + '%').list();
-    // }
+    @GET
+    @Path("/search/{user_id}/{nome_cafe}")
+    @RolesAllowed({"User"})
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Cafe> searchByName(@PathParam("user_id") Long user_id, @PathParam("nome_cafe") String nome_cafe) {
+        return Cafe.find("SELECT * FROM cafes").list();
+    }
 
 }
