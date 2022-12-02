@@ -1,29 +1,27 @@
-import 'dart:ffi';
-
 class Usuario {
-  final Long id;
-  final String nome;
-  final String login;
-  final String senha;
+  int? id;
+  String? nome;
+  String? login;
+  String? senha;
+  String? imagem;
 
-  Usuario(
-      {required this.id,
-      required this.nome,
-      required this.login,
-      required this.senha});
+  Usuario({this.id, this.nome, this.login, this.senha, this.imagem});
 
-  factory Usuario.fromJson(dynamic json) {
-    return Usuario(
-      id: json['id'] as Long,
-      nome: json['nome'] as String,
-      login: json['login'] as String,
-      senha: json['senha'] as String,
-    );
+  Usuario.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    nome = json['nome'];
+    login = json['login'];
+    senha = json['senha'];
+    imagem = json['imagem'];
   }
 
-  static List<Usuario> usuarioFromSnapShot(List snapshot) {
-    return snapshot.map((data) {
-      return Usuario.fromJson(data);
-    }).toList();
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['nome'] = this.nome;
+    data['login'] = this.login;
+    data['senha'] = this.senha;
+    data['imagem'] = this.imagem;
+    return data;
   }
 }

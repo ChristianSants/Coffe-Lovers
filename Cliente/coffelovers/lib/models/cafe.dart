@@ -1,33 +1,44 @@
-import 'dart:ffi';
-
 class Cafe {
-  final String nome;
-  final int nota;
-  final String tipo;
-  final bool favorito;
-  final String imagem;
+  int? id;
+  String? nome;
+  int? nota;
+  String? tipo;
+  bool? favorito;
+  String? imagem;
+  int? cafeteriaId;
+  int? userId;
 
-  Cafe({
-    required this.nome,
-    required this.nota,
-    required this.tipo,
-    required this.favorito,
-    required this.imagem,
-  });
+  Cafe(
+      {this.id,
+      this.nome,
+      this.nota,
+      this.tipo,
+      this.favorito,
+      this.imagem,
+      this.cafeteriaId,
+      this.userId});
 
-  factory Cafe.fromJson(dynamic json) {
-    return Cafe(
-      nome: json['nome'] as String,
-      nota: json['nota'] as int,
-      tipo: json['tipo'] as String,
-      favorito: json['favorito'] as bool,
-      imagem: json['imagem'] as String,
-    );
+  Cafe.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    nome = json['nome'];
+    nota = json['nota'];
+    tipo = json['tipo'];
+    favorito = json['favorito'];
+    imagem = json['imagem'];
+    cafeteriaId = json['cafeteria_id'];
+    userId = json['user_id'];
   }
 
-  static List<Cafe> cafeFromSnapShot(List snapshot) {
-    return snapshot.map((data) {
-      return Cafe.fromJson(data);
-    }).toList();
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['nome'] = this.nome;
+    data['nota'] = this.nota;
+    data['tipo'] = this.tipo;
+    data['favorito'] = this.favorito;
+    data['imagem'] = this.imagem;
+    data['cafeteria_id'] = this.cafeteriaId;
+    data['user_id'] = this.userId;
+    return data;
   }
 }
