@@ -1,3 +1,4 @@
+import 'package:coffelovers/pages/cafe_card.dart';
 import 'package:flutter/material.dart';
 
 class CafeHomePage extends StatefulWidget {
@@ -11,8 +12,10 @@ class _CafeHomePageState extends State<CafeHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text('Coffe Lovers Home Page'),
+      body: CafeCard(
+        nome: "Meu Café",
+        nota: "5",
+        tipo: "Amargo",
       ),
     );
   }
