@@ -1,24 +1,27 @@
-import 'dart:ffi';
-
 class Cafeteria {
-  final String nome;
-  final String endereco;
-  final Long user_id;
+  int? id;
+  String? nome;
+  String? endereco;
+  String? imagem;
+  int? userId;
 
-  Cafeteria(
-      {required this.nome, required this.endereco, required this.user_id});
+  Cafeteria({this.id, this.nome, this.endereco, this.imagem, this.userId});
 
-  factory Cafeteria.fromJson(dynamic json) {
-    return Cafeteria(
-      nome: json['nome'] as String,
-      endereco: json['endereco'] as String,
-      user_id: json['user_id'] as Long,
-    );
+  Cafeteria.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    nome = json['nome'];
+    endereco = json['endereco'];
+    imagem = json['imagem'];
+    userId = json['user_id'];
   }
 
-  static List<Cafeteria> cafeteriaFromSnapShot(List snapshot) {
-    return snapshot.map((data) {
-      return Cafeteria.fromJson(data);
-    }).toList();
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['nome'] = this.nome;
+    data['endereco'] = this.endereco;
+    data['imagem'] = this.imagem;
+    data['user_id'] = this.userId;
+    return data;
   }
 }
