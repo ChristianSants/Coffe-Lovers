@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class CafeteriaRepository {
   // use http
-  String dataURL = 'http://localhost:8083/cafeteria';
+  String dataURL = 'http://localhost:8080/bff/cafeteria';
 
   //get
   Future<List<Cafeteria>> getCafeteriaList() async {
@@ -29,7 +29,7 @@ class CafeteriaRepository {
   }
 
   Future<String> putCafeteria(Cafeteria cafeteria) async {
-    var url = Uri.parse('$dataURL/putcafeteria');
+    var url = Uri.parse('$dataURL/edit');
     var _sharedPreferences = await SharedPreferences.getInstance();
 
     String? token = (_sharedPreferences.getString('token'));
@@ -70,7 +70,11 @@ class CafeteriaRepository {
   Future<String> deleteCafeteria(Cafeteria cafeteria) async {
     var url = Uri.parse('$dataURL/detele');
     var result = 'false';
-    await http.delete(url).then((value) {
+    var _sharedPreferences = await SharedPreferences.getInstance();
+    String? token = (_sharedPreferences.getString('token'));
+
+    var headers = {'Authorization': 'Bearer ${token}'};
+    await http.delete(url, headers: headers).then((value) {
       print(value.body);
       return result = 'true';
     });

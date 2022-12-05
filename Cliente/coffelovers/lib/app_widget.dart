@@ -1,4 +1,3 @@
-import 'package:coffelovers/pages/api_teste_page.dart';
 import 'package:coffelovers/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';

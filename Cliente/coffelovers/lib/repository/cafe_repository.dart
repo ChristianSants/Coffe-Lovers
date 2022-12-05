@@ -6,11 +6,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class CafeRepository {
   // use http
-  String dataURL = 'http://localhost:8083/cafe';
+  String dataURL = 'http://localhost:8080/bff/cafe';
 
   //get
   Future<List<Cafe>> getCafeList() async {
-    print('entrou aqui');
     List<Cafe> cafeList = [];
 
     var _sharedPreferences = await SharedPreferences.getInstance();
@@ -23,7 +22,6 @@ class CafeRepository {
     var body = json.decode(response.body);
 
     for (var i = 0; i < body.length; i++) {
-      print('entrou aqui2');
       cafeList.add(Cafe.fromJson(body[i]));
       print("${body[i]}");
     }

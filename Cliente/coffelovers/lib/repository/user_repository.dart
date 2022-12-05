@@ -1,16 +1,15 @@
 import 'package:coffelovers/models/user.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
-import 'package:http/http.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UsuarioRepository {
-  String dataURL = 'http://localhost:8083/user';
-  //get
+  String dataURL = 'http://localhost:8080/bff/user';
+  //get UserList
   Future<List<User>> getUsuarioList() async {
     List<User> usuarioList = [];
     // falta editar
-    var url = Uri.parse('$dataURL/getUsuarioList');
+    var url = Uri.parse('$dataURL/list');
     var response = await http.get(url);
     print('status code : ${response.statusCode}');
     var body = json.decode(response.body);
@@ -21,8 +20,14 @@ class UsuarioRepository {
     return usuarioList;
   }
 
+  //Update User
   Future<String> putUsuario(User usuario) async {
-    var url = Uri.parse('$dataURL/putusuario');
+    var url = Uri.parse('$dataURL/edit');
+    var _sharedPreferences = await SharedPreferences.getInstance();
+    String? token = (_sharedPreferences.getString('token'));
+
+    var headers = {'Authorization': 'Bearer ${token}'};
+
     String resData = '';
     await http.put(
       url,
@@ -50,7 +55,7 @@ class UsuarioRepository {
   }
 
   Future<String> deleteUsuario(User usuario) async {
-    var url = Uri.parse('$dataURL/detele');
+    var url = Uri.parse('$dataURL/detele/${usuario.id}');
     var result = 'false';
     await http.delete(url).then((value) {
       print(value.body);

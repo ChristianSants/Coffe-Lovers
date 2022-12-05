@@ -109,7 +109,7 @@ class _LoginPageState extends State<LoginPage> {
   Logar() async {
     SharedPreferences _sharedPreferences =
         await SharedPreferences.getInstance();
-    var url = Uri.parse('http://localhost:8081/login');
+    var url = Uri.parse('http://localhost:8080/bff/login');
     var response = await http.post(url, body: {
       'login': _loginController.text,
       'senha': _senhaController.text,

@@ -16,7 +16,7 @@ class NavBar extends StatelessWidget {
             currentAccountPicture: CircleAvatar(
                 child: ClipOval(
                     child: Image.network(
-              "https://media-exp1.licdn.com/dms/image/C5603AQE8ClfXI0mf3A/profile-displayphoto-shrink_800_800/0/1657723458769?e=2147483647&v=beta&t=CmhUJU75l-vgCzz78i6c05EqB4du12wKeAdv200I6dE",
+              "https://img.elo7.com.br/product/original/362C4C6/robo-para-uma-empresa-provedora-de-internet-mascote.jpg",
               width: 90,
               height: 90,
               fit: BoxFit.cover,
@@ -25,7 +25,7 @@ class NavBar extends StatelessWidget {
                 color: Colors.blue,
                 image: DecorationImage(
                   image: NetworkImage(
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp7Wk9GQusyaY6Q88KUD6igtbOxLMO79c-xZ7f9QIfhNar3KUlvxEEU6aPSDrfwtATV74&usqp=CAU',
+                    'https://i.pinimg.com/originals/5e/68/7f/5e687f0835e049f7ac499d3554465ef2.jpg',
                   ),
                   fit: BoxFit.cover,
                 )),
