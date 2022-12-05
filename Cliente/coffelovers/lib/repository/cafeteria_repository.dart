@@ -7,7 +7,7 @@ class CafeteriaRepository {
   String dataURL = 'http://localhost:8083/cafeteria';
   static const headers = {
     'Authorization':
-        'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODEiLCJ1cG4iOiJra2siLCJncm91cHMiOlsiVXNlciJdLCJmdWxsX25hbWUiOiJra2siLCJpYXQiOjE2NzAyMDU3NDksImV4cCI6MTY3MDIwNjA0OSwianRpIjoiNzNmMGVjZmYtNTUyMS00N2RlLTk3NTYtNzJkMzczYWEyM2U5In0.IJgxEZL61BffDosilFOm_ykoSpGobFoGk6rZfpgYtqaji4xAuuh6PNdCaI4i3WVchmRsKOueXbA6ZhaHUhADVdBD7O7QR2I_1a3duVoShZ3zxg3VimH2dnDr2BXHB1-QzvHK2s2EvDEU_m6CewmJAJIAixllLvOaYIufWVXuftRfaB672M8PpRyb-3HhMb3WtxCSPjPwa7oWiIOZooIrHPGaj6RX8GJkJO6-4TWz55YKkirUc13525n_WAX3Eghm1Avp6BOLrxmoc6_5I69OPHJgGtOm1KZQcBBkN6b2nBh9sjg34Rce1uOOK8ySMyoDCOGSJqr2cRUtEEszcpn4cg'
+        'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODEiLCJ1cG4iOiJwYXVsbyIsImdyb3VwcyI6WyJVc2VyIl0sImZ1bGxfbmFtZSI6InBhdWxvIiwiaWF0IjoxNjcwMjQwMDA2LCJleHAiOjE2NzAyNDAzMDYsImp0aSI6IjU4M2YyZTc5LWM5ZjAtNGIxZS04N2NkLWJhOGRlYzdhMDNjOSJ9.EC-xnJdyIAREV5TSowkkPvjR57quC_x5c6OAa_E8iY3CH-5vb02RB9YYrg0uiTKk1NyNOHg3MmxauLr5exKuLADjrURWPkZh9lhaZvyajd90E-KDPWCMyFozhw86IuDHJ_4yo5XMwvtrxxl93la3gl62edHsfmW09QNiqx5JCTbNmpEavCRWx35vCEp8sjIQzJ92Kj8l8hqeORZmfl1zCrGs_ROGu7-DmC-EHXOt4QLrIQkNtd8K-Bvz5-CneWN3TlWW1KkAQul0LwvTbAcgg5EbRDGu1eUexkHUCOM2DJ1rcJ10jxS0AD4aciVorGTQb1tLKlcv_2pRDNb4K0FG_w'
   };
   //get
   Future<List<Cafeteria>> getCafeteriaList() async {
@@ -42,9 +42,10 @@ class CafeteriaRepository {
   }
 
   Future<String> postCafeteria(Cafeteria cafeteria) async {
-    var url = Uri.parse('$dataURL/cafe/');
+    var url = Uri.parse('$dataURL/save');
     var result = '';
-    var response = await http.post(url, body: cafeteria.toJson());
+    var response =
+        await http.post(url, headers: headers, body: cafeteria.toJson());
     print(response.statusCode);
     print(response.body);
     return 'true';
