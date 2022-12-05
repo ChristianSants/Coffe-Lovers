@@ -3,7 +3,7 @@ import 'package:coffelovers/models/cafe.dart';
 import 'package:coffelovers/pages/cafe_home_page.dart';
 import 'package:coffelovers/pages/configuracoes_page.dart';
 import 'package:coffelovers/pages/favoritos_page.dart';
-import 'package:coffelovers/pages/pesquisa_page.dart';
+import 'package:coffelovers/pages/cafeteria_page.dart';
 import 'package:coffelovers/repository/cafe_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -25,9 +25,9 @@ class _HomePageState extends State<HomePage> {
 
   int currentIndex = 0;
   final screens = [
+    CafeteriaPage(),
     CafeHomePage(),
     FavoritosPage(),
-    PesquisaPage(),
     ConfiguracoesPage(),
   ];
   @override
@@ -53,15 +53,15 @@ class _HomePageState extends State<HomePage> {
           items: [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
-              label: 'Home',
+              label: 'Cafeterias',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.coffee),
+              label: 'Cafés',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.favorite),
               label: 'Favoritos',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.search),
-              label: 'Pesquisar',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.settings),

@@ -4,14 +4,17 @@ import 'dart:convert';
 
 class CafeteriaRepository {
   // use http
-  String dataURL = 'nosso link';
-
+  String dataURL = 'http://localhost:8083/cafeteria';
+  static const headers = {
+    'Authorization':
+        'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODEiLCJ1cG4iOiJra2siLCJncm91cHMiOlsiVXNlciJdLCJmdWxsX25hbWUiOiJra2siLCJpYXQiOjE2NzAyMDU3NDksImV4cCI6MTY3MDIwNjA0OSwianRpIjoiNzNmMGVjZmYtNTUyMS00N2RlLTk3NTYtNzJkMzczYWEyM2U5In0.IJgxEZL61BffDosilFOm_ykoSpGobFoGk6rZfpgYtqaji4xAuuh6PNdCaI4i3WVchmRsKOueXbA6ZhaHUhADVdBD7O7QR2I_1a3duVoShZ3zxg3VimH2dnDr2BXHB1-QzvHK2s2EvDEU_m6CewmJAJIAixllLvOaYIufWVXuftRfaB672M8PpRyb-3HhMb3WtxCSPjPwa7oWiIOZooIrHPGaj6RX8GJkJO6-4TWz55YKkirUc13525n_WAX3Eghm1Avp6BOLrxmoc6_5I69OPHJgGtOm1KZQcBBkN6b2nBh9sjg34Rce1uOOK8ySMyoDCOGSJqr2cRUtEEszcpn4cg'
+  };
   //get
   Future<List<Cafeteria>> getCafeteriaList() async {
     List<Cafeteria> cafeteriaList = [];
     // falta editar
-    var url = Uri.parse('$dataURL/getCafeteriaList');
-    var response = await http.get(url);
+    var url = Uri.parse('$dataURL/list');
+    var response = await http.get(url, headers: headers);
     print('status code : ${response.statusCode}');
     var body = json.decode(response.body);
 

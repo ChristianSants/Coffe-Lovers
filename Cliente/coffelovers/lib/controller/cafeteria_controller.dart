@@ -6,7 +6,7 @@ class CafeteriaController {
 
   CafeteriaController(this._cafeteriaRepository);
 
-  Future<List<Cafeteria>> fetchCafeList() async {
+  Future<List<Cafeteria>> fetchCafeteriaList() async {
     return _cafeteriaRepository.getCafeteriaList();
   }
 

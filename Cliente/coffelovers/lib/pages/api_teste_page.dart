@@ -3,7 +3,7 @@ import 'package:coffelovers/models/cafe.dart';
 import 'package:coffelovers/pages/cafe_home_page.dart';
 import 'package:coffelovers/pages/configuracoes_page.dart';
 import 'package:coffelovers/pages/favoritos_page.dart';
-import 'package:coffelovers/pages/pesquisa_page.dart';
+import 'package:coffelovers/pages/cafeteria_page.dart';
 import 'package:coffelovers/repository/cafe_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +27,7 @@ class _APITestState extends State<APITest> {
   final screens = [
     CafeHomePage(),
     FavoritosPage(),
-    PesquisaPage(),
+    //PesquisaPage(),
     ConfiguracoesPage(),
   ];
   @override

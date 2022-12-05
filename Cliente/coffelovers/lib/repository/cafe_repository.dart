@@ -7,7 +7,7 @@ class CafeRepository {
   String dataURL = 'http://localhost:8083/cafe';
   static const headers = {
     'Authorization':
-        'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODEiLCJ1cG4iOiJwYXVsbyIsImdyb3VwcyI6WyJVc2VyIl0sImZ1bGxfbmFtZSI6InBhdWxvIiwiaWF0IjoxNjcwMjAwNjg1LCJleHAiOjE2NzAyMDA5ODUsImp0aSI6IjFhZjdlZmQxLTIxNDktNGM1Mi05NWNjLTliODgwMmFiYzYzMyJ9.IhC1-VPBn1Gc-jNhCXlrTkvZ30Oyp_wErRqa2itWAj_VtSEqadiZ-kT7dN1-q12WJUZFiMDkMmoa3j8rvytofxIKrjbUBM0WHBxgtfUcZD_B8kVae3KWQ7Qg8MTZZ2x5Ztp5Xrzo3HW5qweA_K_mryCgvLmsl5Jqj-BrqjCu8gitwdKmSnZCil5ZMHzfXAfJ2_wmaWJw4QDzY1lnuuKYn9sfQOsgYiOskSqmMyOvFAg-iPznkstv12TS0f6zLSFa5NWgzBXrnJqRp3WPkHpAQbsnQEC1uBCQuf0Tqrw_qdybT4STfX9ukl6HIEONx2DCSoQ_njkYhNHvCvKcPfEJfA'
+        'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODEiLCJ1cG4iOiJra2siLCJncm91cHMiOlsiVXNlciJdLCJmdWxsX25hbWUiOiJra2siLCJpYXQiOjE2NzAyMDU3NDksImV4cCI6MTY3MDIwNjA0OSwianRpIjoiNzNmMGVjZmYtNTUyMS00N2RlLTk3NTYtNzJkMzczYWEyM2U5In0.IJgxEZL61BffDosilFOm_ykoSpGobFoGk6rZfpgYtqaji4xAuuh6PNdCaI4i3WVchmRsKOueXbA6ZhaHUhADVdBD7O7QR2I_1a3duVoShZ3zxg3VimH2dnDr2BXHB1-QzvHK2s2EvDEU_m6CewmJAJIAixllLvOaYIufWVXuftRfaB672M8PpRyb-3HhMb3WtxCSPjPwa7oWiIOZooIrHPGaj6RX8GJkJO6-4TWz55YKkirUc13525n_WAX3Eghm1Avp6BOLrxmoc6_5I69OPHJgGtOm1KZQcBBkN6b2nBh9sjg34Rce1uOOK8ySMyoDCOGSJqr2cRUtEEszcpn4cg'
   };
 
   //get
@@ -30,7 +30,7 @@ class CafeRepository {
   }
 
   Future<String> putCafe(Cafe cafe) async {
-    var url = Uri.parse('$dataURL/putcafe');
+    var url = Uri.parse('$dataURL/edit');
     String resData = '';
     await http.put(
       url,
@@ -50,7 +50,7 @@ class CafeRepository {
 
   Future<String> postCafe(Cafe cafe) async {
     print('${cafe.toJson()}');
-    var url = Uri.parse('$dataURL/cafe/');
+    var url = Uri.parse('$dataURL/save');
     var result = '';
     var response = await http.post(url, body: cafe.toJson());
     print(response.statusCode);
@@ -66,9 +66,5 @@ class CafeRepository {
       return result = 'true';
     });
     return result;
-  }
-
-  Future<String> searchCafe(Cafe cafe) async {
-    throw UnimplementedError();
   }
 }

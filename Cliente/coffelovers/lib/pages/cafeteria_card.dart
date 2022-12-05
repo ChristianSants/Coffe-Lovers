@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 import '../controller/cafe_controller.dart';
 import '../repository/cafe_repository.dart';
 
-class CafeCard extends StatelessWidget {
+class CafeteriaCard extends StatelessWidget {
   var cafeController = CafeController(CafeRepository());
 
   final String nome;
-  final String nota;
-  final String tipo;
+  final String endereco;
+  final String id;
   //final bool favorito;
-  CafeCard({
+  CafeteriaCard({
     required this.nome,
-    required this.nota,
-    required this.tipo,
+    required this.endereco,
+    required this.id,
     //required this.favorito,
   });
   @override
@@ -84,7 +84,7 @@ class CafeCard extends StatelessWidget {
                           size: 18,
                         ),
                         SizedBox(width: 7),
-                        Text(nota),
+                        Text(endereco),
                       ],
                     ),
                   ),
@@ -103,7 +103,7 @@ class CafeCard extends StatelessWidget {
                           size: 18,
                         ),
                         SizedBox(width: 7),
-                        Text(tipo),
+                        Text(id),
                       ],
                     ),
                   )
