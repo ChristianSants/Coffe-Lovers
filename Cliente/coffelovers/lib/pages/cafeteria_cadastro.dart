@@ -61,7 +61,7 @@ class _CafeteriaCadastroState extends State<CafeteriaCadastro> {
                       height: 15,
                     ),
                     ElevatedButton(
-                        child: Text('Cadastrar'),
+                        child: Text('Cadastrar Cafeteria'),
                         onPressed: () {
                           Cafeteria cafeteria =
                               Cafeteria(id: 10, nome: nome, endereco: endereco);

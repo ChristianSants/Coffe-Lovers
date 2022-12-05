@@ -1,3 +1,7 @@
+import 'package:coffelovers/controller/usuario_controller.dart';
+import 'package:coffelovers/models/user.dart';
+import 'package:coffelovers/pages/login_page.dart';
+import 'package:coffelovers/repository/user_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -11,8 +15,10 @@ class CadastroPage extends StatefulWidget {
 }
 
 class _CadastroPageState extends State<CadastroPage> {
+  var usuarioController = UsuarioController(UsuarioRepository());
+
   String nome = '';
-  String email = '';
+  String login = '';
   String senha = '';
   @override
   Widget build(BuildContext context) {
@@ -43,11 +49,10 @@ class _CadastroPageState extends State<CadastroPage> {
                     ),
                     TextField(
                       onChanged: (text) {
-                        email = text;
+                        login = text;
                       },
-                      keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
-                          labelText: 'Email', border: OutlineInputBorder()),
+                          labelText: 'Login', border: OutlineInputBorder()),
                     ),
                     SizedBox(
                       height: 10,
@@ -63,7 +68,20 @@ class _CadastroPageState extends State<CadastroPage> {
                     SizedBox(
                       height: 15,
                     ),
-                    ElevatedButton(child: Text('Cadastrar'), onPressed: () {})
+                    ElevatedButton(
+                        child: Text('Cadastrar'),
+                        onPressed: () {
+                          User usuario = User(
+                            id: 10,
+                            nome: nome,
+                            login: login,
+                            senha: senha,
+                            cafes: [],
+                          );
+                          usuarioController.postUsuario(usuario);
+                          Navigator.of(context).push(
+                              MaterialPageRoute(builder: (_) => LoginPage()));
+                        })
                   ],
                 ),
               )),

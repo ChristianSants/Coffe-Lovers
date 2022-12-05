@@ -24,8 +24,8 @@ class _CafeCadastroState extends State<CafeCadastro> {
   var cafeController = CafeController(CafeRepository());
 
   String nome = '';
-  int nota = 0;
-  String tipo;
+  int? nota;
+  String tipo = '';
 
   @override
   Widget build(BuildContext context) {
@@ -64,8 +64,18 @@ class _CafeCadastroState extends State<CafeCadastro> {
                     SizedBox(
                       height: 15,
                     ),
+                    TextField(
+                      onChanged: (text) {
+                        tipo = text;
+                      },
+                      decoration: InputDecoration(
+                          labelText: 'Tipo Café', border: OutlineInputBorder()),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
                     ElevatedButton(
-                        child: Text('Cadastrar'),
+                        child: Text('Cadastrar Café'),
                         onPressed: () {
                           Cafe cafe = Cafe(
                               id: 10,
