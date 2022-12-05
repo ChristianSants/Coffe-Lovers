@@ -4,19 +4,27 @@ import 'dart:convert';
 
 class CafeRepository {
   // use http
-  String dataURL = 'nosso link';
+  String dataURL = 'http://localhost:8083/cafe';
+  static const headers = {
+    'Authorization':
+        'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODEiLCJ1cG4iOiJwYXVsbyIsImdyb3VwcyI6WyJVc2VyIl0sImZ1bGxfbmFtZSI6InBhdWxvIiwiaWF0IjoxNjcwMjAwNjg1LCJleHAiOjE2NzAyMDA5ODUsImp0aSI6IjFhZjdlZmQxLTIxNDktNGM1Mi05NWNjLTliODgwMmFiYzYzMyJ9.IhC1-VPBn1Gc-jNhCXlrTkvZ30Oyp_wErRqa2itWAj_VtSEqadiZ-kT7dN1-q12WJUZFiMDkMmoa3j8rvytofxIKrjbUBM0WHBxgtfUcZD_B8kVae3KWQ7Qg8MTZZ2x5Ztp5Xrzo3HW5qweA_K_mryCgvLmsl5Jqj-BrqjCu8gitwdKmSnZCil5ZMHzfXAfJ2_wmaWJw4QDzY1lnuuKYn9sfQOsgYiOskSqmMyOvFAg-iPznkstv12TS0f6zLSFa5NWgzBXrnJqRp3WPkHpAQbsnQEC1uBCQuf0Tqrw_qdybT4STfX9ukl6HIEONx2DCSoQ_njkYhNHvCvKcPfEJfA'
+  };
 
   //get
   Future<List<Cafe>> getCafeList() async {
+    print('entrou aqui');
     List<Cafe> cafeList = [];
     // falta editar
-    var url = Uri.parse('$dataURL/getCafeList');
-    var response = await http.get(url);
+    var url = Uri.parse('$dataURL/list');
+    print('${url}');
+    var response = await http.get(url, headers: headers);
     print('status code : ${response.statusCode}');
     var body = json.decode(response.body);
 
     for (var i = 0; i < body.length; i++) {
+      print('entrou aqui2');
       cafeList.add(Cafe.fromJson(body[i]));
+      print("${body[i]}");
     }
     return cafeList;
   }

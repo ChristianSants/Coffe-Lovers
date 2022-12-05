@@ -1,12 +1,12 @@
+import 'cafeteria.dart';
+
 class Cafe {
   int? id;
   String? nome;
   int? nota;
   String? tipo;
   bool? favorito;
-  String? imagem;
-  int? cafeteriaId;
-  int? userId;
+  Cafeteria? cafeteria;
 
   Cafe(
       {this.id,
@@ -14,9 +14,7 @@ class Cafe {
       this.nota,
       this.tipo,
       this.favorito,
-      this.imagem,
-      this.cafeteriaId,
-      this.userId});
+      this.cafeteria});
 
   Cafe.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -24,9 +22,9 @@ class Cafe {
     nota = json['nota'];
     tipo = json['tipo'];
     favorito = json['favorito'];
-    imagem = json['imagem'];
-    cafeteriaId = json['cafeteria_id'];
-    userId = json['user_id'];
+    cafeteria = json['cafeteria'] != null
+        ? new Cafeteria.fromJson(json['cafeteria'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -36,9 +34,9 @@ class Cafe {
     data['nota'] = this.nota;
     data['tipo'] = this.tipo;
     data['favorito'] = this.favorito;
-    data['imagem'] = this.imagem;
-    data['cafeteria_id'] = this.cafeteriaId;
-    data['user_id'] = this.userId;
+    if (this.cafeteria != null) {
+      data['cafeteria'] = this.cafeteria!.toJson();
+    }
     return data;
   }
 }

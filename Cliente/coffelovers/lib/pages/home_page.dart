@@ -1,7 +1,10 @@
+import 'package:coffelovers/controller/cafe_controller.dart';
+import 'package:coffelovers/models/cafe.dart';
 import 'package:coffelovers/pages/cafe_home_page.dart';
 import 'package:coffelovers/pages/configuracoes_page.dart';
 import 'package:coffelovers/pages/favoritos_page.dart';
 import 'package:coffelovers/pages/pesquisa_page.dart';
+import 'package:coffelovers/repository/cafe_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -18,6 +21,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  var cafeController = CafeController(CafeRepository());
+
   int currentIndex = 0;
   final screens = [
     CafeHomePage(),

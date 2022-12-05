@@ -1,18 +1,23 @@
+import 'cafe.dart';
+
 class Cafeteria {
   int? id;
   String? nome;
   String? endereco;
-  String? imagem;
-  int? userId;
+  List<Cafe>? cafes;
 
-  Cafeteria({this.id, this.nome, this.endereco, this.imagem, this.userId});
+  Cafeteria({this.id, this.nome, this.endereco, this.cafes});
 
   Cafeteria.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     nome = json['nome'];
     endereco = json['endereco'];
-    imagem = json['imagem'];
-    userId = json['user_id'];
+    if (json['cafes'] != null) {
+      cafes = <Cafe>[];
+      json['cafes'].forEach((v) {
+        cafes!.add(new Cafe.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -20,8 +25,9 @@ class Cafeteria {
     data['id'] = this.id;
     data['nome'] = this.nome;
     data['endereco'] = this.endereco;
-    data['imagem'] = this.imagem;
-    data['user_id'] = this.userId;
+    if (this.cafes != null) {
+      data['cafes'] = this.cafes!.map((v) => v.toJson()).toList();
+    }
     return data;
   }
 }

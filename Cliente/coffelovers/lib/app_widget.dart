@@ -1,3 +1,4 @@
+import 'package:coffelovers/pages/api_teste_page.dart';
 import 'package:coffelovers/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -11,8 +12,8 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(primarySwatch: Colors.brown),
-      //home: LoginPage(),
-      home: HomePage(),
+      //home: HomePage(),
+      home: APITest(),
     );
   }
 }
